@@ -3,6 +3,7 @@ import { useContext, useState } from "react";
 import loginLottie from '../assets/lotties/loginLottie.json'
 import AuthContext from "../context/AuthContext/AuthContext";
 import { useNavigate } from "react-router-dom";
+import SocialLogin from "../components/SocialLogin";
 
 const Signin = () => {
   const [error, setError] = useState('');
@@ -78,6 +79,7 @@ const Signin = () => {
               <div className="form-control mt-6">
                 <button className="btn btn-primary">Login</button>
               </div>
+            <SocialLogin />
             </form>
           </div>
         </div>
