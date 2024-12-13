@@ -1,11 +1,12 @@
 import { ImProfile } from "react-icons/im";
 import { IoLocationOutline } from "react-icons/io5";
 import { TbCoinTaka } from "react-icons/tb";
+import { Link } from "react-router-dom";
 
 
 const HotJobCard = ({job}) => {
   console.log(job);
-  const {title, company, company_logo, requirements, description, location, salaryRange, jobType} = job || {};
+  const {_id:id,title, company, company_logo, requirements, description, location, salaryRange, jobType} = job || {};
   return (
     <div className="border p-4 rounded-lg flex flex-col">
       <div className="flex gap-2">
@@ -61,7 +62,7 @@ const HotJobCard = ({job}) => {
         </div>
 
         <div>
-          <button className="btn btn-primary">Apply</button>
+          <Link to={`/jobs/${id}`} className="btn btn-primary">Details</Link>
         </div>
       </div>
     </div>

@@ -3,6 +3,8 @@ import App from "../App";
 import Home from "../pages/Home";
 import Register from "../pages/Register";
 import Signin from "../pages/Signin";
+import JobDetails from "../pages/JobDetails";
+import PrivetRoute from "./PrivetRoute";
 
 const routes = createBrowserRouter([
   {
@@ -14,13 +16,23 @@ const routes = createBrowserRouter([
         element: <Home />,
       },
       {
-        path: '/register',
-        element: <Register />
+        path: "/jobs/:id",
+        element: (
+          <PrivetRoute>
+            <JobDetails />
+          </PrivetRoute>
+        ),
+        loader: ({ params }) =>
+          fetch(`http://localhost:3000/jobs/${params.id}`),
       },
       {
-        path: '/login',
-        element: <Signin />
-      }
+        path: "/register",
+        element: <Register />,
+      },
+      {
+        path: "/login",
+        element: <Signin />,
+      },
     ],
   },
 ]);

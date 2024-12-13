@@ -2,13 +2,14 @@ import Lottie from "lottie-react";
 import { useContext, useState } from "react";
 import loginLottie from '../assets/lotties/loginLottie.json'
 import AuthContext from "../context/AuthContext/AuthContext";
-import { useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import SocialLogin from "../components/SocialLogin";
 
 const Signin = () => {
   const [error, setError] = useState('');
   const {signinUser} = useContext(AuthContext);
   const navigate = useNavigate();
+  const location = useLocation();
 
   const handleLogin = e => {
     e.preventDefault();
@@ -77,8 +78,9 @@ const Signin = () => {
                 </label>
               </div>
               <div className="form-control mt-6">
-                <button className="btn btn-primary">Login</button>
+                <button type="submit" className="btn btn-primary">Login</button>
               </div>
+              <p className="text-gray-600">Don&apos;t have an account? <Link to='/register' state={location?.state} className="text-violet-800">Register</Link></p>
             <SocialLogin />
             </form>
           </div>

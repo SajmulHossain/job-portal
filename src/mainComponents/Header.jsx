@@ -1,11 +1,12 @@
 import { useContext } from "react";
-import { Link, NavLink, useNavigate } from "react-router-dom";
+import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
 import AuthContext from "../context/AuthContext/AuthContext";
 import logo from '../assets/logo.png'
 
 const Header = () => {
   const { user, logout } = useContext(AuthContext);
   const navigate = useNavigate();
+  const location = useLocation();
 
   const handleLogout = () => {
     logout()
@@ -69,10 +70,10 @@ const Header = () => {
             </button>
           ) : (
             <div className="join">
-              <Link to="/login" className="join-item btn border-none">
+              <Link to="/login" state={location?.state} className="join-item btn border-none">
                 Log in
               </Link>
-              <Link to="register" className="join-item btn border-none">
+              <Link to="register" state={location?.state} className="join-item btn border-none">
                 Register
               </Link>
             </div>
