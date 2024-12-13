@@ -33,7 +33,7 @@ const Register = () => {
     createUser(email, password)
     .then(res => {
       setUser(res.user);
-      navigate('/');
+      navigate(location?.state ? location.state : '/');
     })
     .catch(err => {
       setError(err.code);

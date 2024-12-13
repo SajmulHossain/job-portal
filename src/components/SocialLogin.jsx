@@ -1,13 +1,14 @@
 import { useContext } from "react";
 import AuthContext from "../context/AuthContext/AuthContext";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const SocialLogin = () => {
   const { signInWithGoogle } = useContext(AuthContext);
   const navigate = useNavigate();
+  const location = useLocation();
   const handleGoogleLogin = () => {
     signInWithGoogle()
-      .then(() => {navigate('/')})
+      .then(() => {navigate(location?.state ? location.state : '/')})
       .catch((err) => console.log(err.code));
   };
   return (
@@ -15,7 +16,7 @@ const SocialLogin = () => {
       <div className="divider">OR</div>
 
       <div>
-        <button onClick={handleGoogleLogin} className="btn w-full">
+        <button type="button" onClick={handleGoogleLogin} className="btn w-full">
           Continue With Google
         </button>
       </div>

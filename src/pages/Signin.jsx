@@ -33,7 +33,7 @@ const Signin = () => {
     signinUser(email, password)
     .then(() => {
       form.reset();
-      navigate('/');
+      navigate(location?.state ? location.state : "/");
     })
     .catch(err => setError(err.code))
   }
