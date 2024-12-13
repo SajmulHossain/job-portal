@@ -5,6 +5,8 @@ import Register from "../pages/Register";
 import Signin from "../pages/Signin";
 import JobDetails from "../pages/JobDetails";
 import PrivetRoute from "./PrivetRoute";
+import ProtectForm from "./ProtectForm";
+import JobApply from "../pages/JobApply";
 
 const routes = createBrowserRouter([
   {
@@ -27,11 +29,21 @@ const routes = createBrowserRouter([
       },
       {
         path: "/register",
-        element: <Register />,
+        element: <ProtectForm>
+          <Register />
+        </ProtectForm>,
+      },
+      {
+        path: '/apply/:id', 
+        element: <PrivetRoute>
+          <JobApply />
+        </PrivetRoute>,
       },
       {
         path: "/login",
-        element: <Signin />,
+        element: <ProtectForm>
+          <Signin />
+        </ProtectForm>,
       },
     ],
   },

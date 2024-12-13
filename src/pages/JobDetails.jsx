@@ -1,9 +1,10 @@
-import { useLoaderData } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 import { motion } from "motion/react";
 
 const JobDetails = () => {
   const job = useLoaderData();
   const {
+    _id:id,
     title,
     location,
     jobType,
@@ -129,9 +130,9 @@ const JobDetails = () => {
           whileHover={{ scale: 1.1 }}
           transition={{ duration: 0.3 }}
         >
-          <button className="btn btn-primary btn-lg bg-gradient-to-r from-violet-700 to-violet-500 hover:from-violet-600 hover:to-violet-400 text-white font-bold px-6 py-3 rounded-full shadow-lg">
+          <Link to={`/apply/${id}`} className="btn btn-primary btn-lg bg-gradient-to-r from-violet-700 to-violet-500 hover:from-violet-600 hover:to-violet-400 text-white font-bold px-6 py-3 rounded-full shadow-lg">
             Apply Now
-          </button>
+          </Link>
         </motion.div>
       )}
     </motion.div>

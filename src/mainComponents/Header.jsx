@@ -26,8 +26,8 @@ const Header = () => {
   );
 
   return (
-    <header className="max-w-screen-xl mx-auto px-4">
-      <nav className="navbar bg-base-100 p-0">
+    <header className="max-w-screen-xl mx-auto px-4 sticky top-0 backdrop-blur-xl z-50 bg-violet-600/30">
+      <nav className="navbar bg-transparent p-0">
         <div className="navbar-start">
           <div className="dropdown">
             <div

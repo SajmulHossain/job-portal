@@ -33,7 +33,7 @@ const Register = () => {
     createUser(email, password)
     .then(res => {
       setUser(res.user);
-      navigate(location?.state ? location.state : '/');
+      navigate(location?.state || '/');
     })
     .catch(err => {
       setError(err.code);
@@ -96,7 +96,7 @@ const Register = () => {
                   Login
                 </Link>
               </p>
-              <SocialLogin />
+              <SocialLogin path={location?.state} />
             </form>
           </div>
         </div>

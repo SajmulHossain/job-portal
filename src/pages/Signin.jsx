@@ -33,7 +33,7 @@ const Signin = () => {
     signinUser(email, password)
     .then(() => {
       form.reset();
-      navigate(location?.state ? location.state : "/");
+      navigate(location?.state || "/");
     })
     .catch(err => setError(err.code))
   }
@@ -81,7 +81,7 @@ const Signin = () => {
                 <button type="submit" className="btn btn-primary">Login</button>
               </div>
               <p className="text-gray-600">Don&apos;t have an account? <Link to='/register' state={location?.state} className="text-violet-800">Register</Link></p>
-            <SocialLogin />
+            <SocialLogin path={location?.state} />
             </form>
           </div>
         </div>
