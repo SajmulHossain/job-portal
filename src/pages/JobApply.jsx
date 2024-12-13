@@ -1,10 +1,15 @@
-import React, { useState } from "react";
-import { useParams } from "react-router-dom";
+import { useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import useAuth from '../hooks/useAuth'
+import Swal from "sweetalert2";
 
 const JobApply = () => {
+  const navigate = useNavigate();
+  const { user } = useAuth();
   const { id } = useParams();
   const [formData, setFormData] = useState({
-    id,
+    jobId: id,
+    applicant_email: user.email,
     linkedin: "",
     resume: "",
     github: "",
@@ -46,7 +51,40 @@ const JobApply = () => {
       setErrors({});
     }
 
-    console.log(formData);
+    fetch(`http://localhost:3000/job-applications`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(formData),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if(data.insertedId) {
+          Swal.fire({
+            title: "Good job!",
+            text: "You clicked the button!",
+            icon: "success",
+          });
+          navigate('/applications')
+        } else {
+          const Toast = Swal.mixin({
+            toast: true,
+            position: "top-end",
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+              toast.onmouseenter = Swal.stopTimer;
+              toast.onmouseleave = Swal.resumeTimer;
+            },
+          });
+          Toast.fire({
+            icon: "error",
+            title: "Something went wrong, try again",
+          });
+        }
+      });
   };
 
   return (
