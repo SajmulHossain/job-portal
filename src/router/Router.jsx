@@ -8,6 +8,7 @@ import PrivetRoute from "./PrivetRoute";
 import ProtectForm from "./ProtectForm";
 import JobApply from "../pages/JobApply";
 import MyApplication from "../pages/MyApplication";
+import AddJobs from "../pages/AddJobs";
 
 const routes = createBrowserRouter([
   {
@@ -50,6 +51,12 @@ const routes = createBrowserRouter([
         path: '/applications',
         element: <PrivetRoute>
           <MyApplication />
+        </PrivetRoute>
+      },
+      {
+        path: '/add-job',
+        element: <PrivetRoute>
+          <AddJobs />
         </PrivetRoute>
       }
     ],

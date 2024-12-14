@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import useAuth from "../hooks/useAuth";
 import Heading from "../components/Heading";
 import Swal from "sweetalert2";
-import { div } from "motion/react-client";
 import { Link } from "react-router-dom";
 
 

@@ -25,6 +25,9 @@ const Header = () => {
       <li>
         <NavLink to="/applications">My Applications</NavLink>
       </li>
+      <li>
+        <NavLink to='/add-job'>Add Job</NavLink>
+      </li>
     </>
   );
 
