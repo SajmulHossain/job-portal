@@ -47,6 +47,7 @@ const JobApply = () => {
 
     if (Object.keys(newErrors).length > 0) {
       setErrors(newErrors);
+      return;
     } else {
       setErrors({});
     }

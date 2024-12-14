@@ -4,8 +4,8 @@ import img2 from "../assets/programming team celebrate.jpg";
 
 const Banner = () => {
   return (
-    <section>
-      <div className="bg-base-200 h-[600px] lg:h-96 flex flex-col items-center justify-center">
+    <section className="my-6">
+      <div className="bg-base-200 rounded-xl h-[600px] lg:h-96 flex flex-col items-center justify-center">
         <div className="flex flex-col gap-32 lg:gap-0 lg:flex-row-reverse">
           <div className="flex-1 flex px-8">
             <motion.img

@@ -29,8 +29,8 @@ const Header = () => {
   );
 
   return (
-    <header className="max-w-screen-xl mx-auto px-4 sticky top-0 backdrop-blur-xl z-50 bg-violet-600/30">
-      <nav className="navbar bg-transparent p-0">
+    <header className="sticky top-0 backdrop-blur-xl z-50 bg-violet-600/30">
+      <nav className="navbar bg-transparent p-0 max-w-screen-xl mx-auto px-4">
         <div className="navbar-start">
           <div className="dropdown">
             <div
@@ -60,8 +60,9 @@ const Header = () => {
               {links}
             </ul>
           </div>
-          <Link to='/'> 
-          <img src={logo} className="h-8 w-8" alt="logo" /></Link>
+          <Link to="/">
+            <img src={logo} className="h-8 w-8" alt="logo" />
+          </Link>
         </div>
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1">{links}</ul>
@@ -73,10 +74,18 @@ const Header = () => {
             </button>
           ) : (
             <div className="join">
-              <Link to="/login" state={location?.state} className="join-item btn border-none">
+              <Link
+                to="/login"
+                state={location?.state}
+                className="join-item btn border-none"
+              >
                 Log in
               </Link>
-              <Link to="register" state={location?.state} className="join-item btn border-none">
+              <Link
+                to="register"
+                state={location?.state}
+                className="join-item btn border-none"
+              >
                 Register
               </Link>
             </div>
