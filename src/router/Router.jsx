@@ -10,6 +10,7 @@ import JobApply from "../pages/JobApply";
 import MyApplication from "../pages/MyApplication";
 import AddJobs from "../pages/AddJobs";
 import MyPostedJob from "../pages/MyPostedJob";
+import ViewApplication from "../pages/ViewApplication";
 
 const routes = createBrowserRouter([
   {
@@ -32,40 +33,64 @@ const routes = createBrowserRouter([
       },
       {
         path: "/register",
-        element: <ProtectForm>
-          <Register />
-        </ProtectForm>,
+        element: (
+          <ProtectForm>
+            <Register />
+          </ProtectForm>
+        ),
       },
       {
-        path: '/apply/:id', 
-        element: <PrivetRoute>
-          <JobApply />
-        </PrivetRoute>,
+        path: "/apply/:id",
+        element: (
+          <PrivetRoute>
+            <JobApply />
+          </PrivetRoute>
+        ),
       },
       {
         path: "/login",
-        element: <ProtectForm>
-          <Signin />
-        </ProtectForm>,
+        element: (
+          <ProtectForm>
+            <Signin />
+          </ProtectForm>
+        ),
       },
       {
-        path: '/applications',
-        element: <PrivetRoute>
-          <MyApplication />
-        </PrivetRoute>
+        path: "/applications",
+        element: (
+          <PrivetRoute>
+            <MyApplication />
+          </PrivetRoute>
+        ),
       },
       {
-        path: '/add-job',
-        element: <PrivetRoute>
-          <AddJobs />
-        </PrivetRoute>
+        path: "/add-job",
+        element: (
+          <PrivetRoute>
+            <AddJobs />
+          </PrivetRoute>
+        ),
       },
       {
-        path: '/myPostedJobs',
-        element: <PrivetRoute>
-          <MyPostedJob />
-        </PrivetRoute>
-      }
+        path: "/myPostedJobs",
+        element: (
+          <PrivetRoute>
+            <MyPostedJob />
+          </PrivetRoute>
+        ),
+      },
+      {
+        path: "/view-application/:job_id",
+        element: (
+          <PrivetRoute>
+            <ViewApplication />
+          </PrivetRoute>
+        ),
+        loader: ({ params }) =>
+          fetch(
+            `http://localhost:3000/job-application/jobs/${params.job_id}`
+          ),
+      },
     ],
   },
 ]);

@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import useAuth from "../hooks/useAuth";
 import Heading from "../components/Heading";
 import NoData from "../components/NoData";
-import HotJobCard from "../components/HotJobCard";
+import { Link } from "react-router-dom";
 
 const MyPostedJob = () => {
   const [jobs, setJobs] = useState([]);
@@ -26,7 +26,8 @@ const MyPostedJob = () => {
                 <th></th>
                 <th>Job Title</th>
                 <th>Deadline</th>
-                <th>Favorite Color</th>
+                <th>Applied People</th>
+                <th>View Applications</th>
               </tr>
             </thead>
             <tbody>
@@ -36,6 +37,14 @@ const MyPostedJob = () => {
                   <td>{job.title}</td>
                   <td>{job.applicationDeadline}</td>
                   <td>{job.applicationCount || 0}</td>
+                  <td>
+                    <Link
+                      to={`/view-application/${job._id}`}
+                      className="btn hover:btn-link"
+                    >
+                      View Application
+                    </Link>
+                  </td>
                 </tr>
               ))}
             </tbody>
