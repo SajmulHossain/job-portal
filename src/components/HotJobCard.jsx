@@ -41,7 +41,7 @@ const HotJobCard = ({job}) => {
       </div>
 
       <div className="my-6 flex gap-2 flex-wrap flex-grow items-center">
-        {requirements.map((req, idx) => (
+        {requirements?.map((req, idx) => (
           <p
             key={idx}
             className="px-4 py-2 flex-grow text-center hover:bg-violet-300 cursor-pointer bg-violet-200 rounded-md text-violet-900"
@@ -55,7 +55,7 @@ const HotJobCard = ({job}) => {
         <div className="flex items-end">
           <p className="flex items-center text-2xl font-semibold text-violet-900">
             <TbCoinTaka />
-            {salaryRange.min}
+            {salaryRange?.min}
           </p>
           <span>/month (min)</span>
         </div>

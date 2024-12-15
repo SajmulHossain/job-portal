@@ -43,7 +43,7 @@ const MyApplication = () => {
   }
 
   useEffect(() => {
-    fetch(`https://job-portal-server-ochre.vercel.app/job-application?email=${user.email}`)
+    fetch(`http://localhost:3000/job-application?email=${user.email}`)
     .then(res => res.json())
     .then(data => {
       setJobs(data);

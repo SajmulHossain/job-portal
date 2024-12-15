@@ -52,7 +52,7 @@ const JobApply = () => {
       setErrors({});
     }
 
-    fetch(`https://job-portal-server-ochre.vercel.app/job-applications`, {
+    fetch(`http://localhost:3000/job-applications`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

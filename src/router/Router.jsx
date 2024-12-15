@@ -9,6 +9,7 @@ import ProtectForm from "./ProtectForm";
 import JobApply from "../pages/JobApply";
 import MyApplication from "../pages/MyApplication";
 import AddJobs from "../pages/AddJobs";
+import MyPostedJob from "../pages/MyPostedJob";
 
 const routes = createBrowserRouter([
   {
@@ -27,7 +28,7 @@ const routes = createBrowserRouter([
           </PrivetRoute>
         ),
         loader: ({ params }) =>
-          fetch(`https://job-portal-server-ochre.vercel.app/jobs/${params.id}`),
+          fetch(`http://localhost:3000/jobs/${params.id}`),
       },
       {
         path: "/register",
@@ -57,6 +58,12 @@ const routes = createBrowserRouter([
         path: '/add-job',
         element: <PrivetRoute>
           <AddJobs />
+        </PrivetRoute>
+      },
+      {
+        path: '/myPostedJobs',
+        element: <PrivetRoute>
+          <MyPostedJob />
         </PrivetRoute>
       }
     ],

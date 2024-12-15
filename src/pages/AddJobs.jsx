@@ -1,7 +1,9 @@
 import { useState } from "react";
 import Swal from "sweetalert2";
+import useAuth from '../hooks/useAuth'
 
 const AddJobs = () => {
+  const { user } = useAuth();
   const [formData, setFormData] = useState({
     title: "",
     location: "",
@@ -365,6 +367,7 @@ const AddJobs = () => {
             id="hr_email"
             name="hr_email"
             value={formData.hr_email}
+            defaultValue={user.email}
             onChange={handleChange}
             className="w-full px-4 py-3 rounded-md focus:outline-none focus:ring-4 focus:ring-violet-300 transition-all duration-300"
           />
@@ -385,6 +388,7 @@ const AddJobs = () => {
             id="hr_name"
             name="hr_name"
             value={formData.hr_name}
+            defaultValue={user.displayName}
             onChange={handleChange}
             className="w-full px-4 py-3 rounded-md focus:outline-none focus:ring-4 focus:ring-violet-300 transition-all duration-300"
           />
