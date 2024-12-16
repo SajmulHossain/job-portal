@@ -91,7 +91,7 @@ const AddJobs = () => {
       responsibilities: formData.responsibilities.split(","),
     };
 
-    fetch("https://job-portal-server-ochre.vercel.app/jobs", {
+    fetch("http://localhost:3000/jobs", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

@@ -3,15 +3,15 @@ import useAuth from "../hooks/useAuth";
 import Heading from "../components/Heading";
 import NoData from "../components/NoData";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
 const MyPostedJob = () => {
   const [jobs, setJobs] = useState([]);
   const { user } = useAuth();
 
   useEffect(()=> {
-    fetch(`https://job-portal-server-ochre.vercel.app/jobs?email=${user.email}`)
-    .then(res => res.json())
-    .then(data => setJobs(data))
+    axios.get(`http://localhost:3000/jobs?email=${user.email}`, {withCredentials: true})
+    .then(({data}) => setJobs(data))
   }, [user.email])
   return (
     <section className="my-12">

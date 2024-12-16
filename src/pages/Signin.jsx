@@ -4,6 +4,7 @@ import loginLottie from '../assets/lotties/loginLottie.json'
 import AuthContext from "../context/AuthContext/AuthContext";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import SocialLogin from "../components/SocialLogin";
+import axios from "axios";
 
 const Signin = () => {
   const [error, setError] = useState('');
@@ -33,6 +34,11 @@ const Signin = () => {
     signinUser(email, password)
     .then(() => {
       form.reset();
+      const user = { email };
+      axios.post('http://localhost:3000/jwt', user, { withCredentials: true })
+      .then(({data}) => {
+        console.log(data);
+      })
       navigate(location?.state || "/");
     })
     .catch(err => setError(err.code))

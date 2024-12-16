@@ -3,7 +3,6 @@ import AuthContext from "../context/AuthContext/AuthContext";
 import { useNavigate } from "react-router-dom";
 
 const SocialLogin = ({path}) => {
-  console.log(path);
   const { signInWithGoogle } = useContext(AuthContext);
   const navigate = useNavigate();
 

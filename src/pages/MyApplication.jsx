@@ -3,7 +3,7 @@ import useAuth from "../hooks/useAuth";
 import Heading from "../components/Heading";
 import Swal from "sweetalert2";
 import { Link } from "react-router-dom";
-
+import axios from "axios";
 
 const MyApplication = () => {
   const [jobs, setJobs] = useState([]);
@@ -20,35 +20,41 @@ const MyApplication = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`https://job-portal-server-ochre.vercel.app/job-applications/${id}`, {
-          method: 'DELETE'
+        fetch(`http://localhost:3000/job-applications/${id}`, {
+          method: "DELETE",
         })
-        .then(res => res.json())
-        .then(data => {
-          if(data.deletedCount) {
+          .then((res) => res.json())
+          .then((data) => {
+            if (data.deletedCount) {
+              const remainingJobs = jobs.filter((job) => job._id !== id);
+              setJobs(remainingJobs);
 
-            const remainingJobs = jobs.filter(job => job._id !== id);
-            setJobs(remainingJobs);
-
-            Swal.fire({
-              title: "Deleted!",
-              text: "Your file has been deleted.",
-              icon: "success",
-            });
-          }
-        })
-        
+              Swal.fire({
+                title: "Deleted!",
+                text: "Your file has been deleted.",
+                icon: "success",
+              });
+            }
+          });
       }
     });
-  }
+  };
 
   useEffect(() => {
-    fetch(`https://job-portal-server-ochre.vercel.app/job-application?email=${user.email}`)
-    .then(res => res.json())
-    .then(data => {
-      setJobs(data);
-    })
-  },[user.email])
+    // fetch(`http://localhost:3000/job-application?email=${user.email}`)
+    // .then(res => res.json())
+    // .then(data => {
+    //   setJobs(data);
+    // })
+
+    axios
+      .get(`http://localhost:3000/job-application?email=${user.email}`, {
+        withCredentials: true,
+      })
+      .then(({ data }) => {
+        setJobs(data);
+      });
+  }, [user.email]);
   return (
     <section>
       <Heading
@@ -56,7 +62,8 @@ const MyApplication = () => {
         paragraph="Jobs that you have applied"
       />
 
-      {jobs.length ? <div className="overflow-x-auto my-12">
+      {jobs.length ? (
+        <div className="overflow-x-auto my-12">
           <table className="table">
             {/* head */}
             <thead>
@@ -90,16 +97,29 @@ const MyApplication = () => {
                     </span>
                   </td>
                   <th>
-                    <button onClick={() => handleDeleteApplication(job._id)} className="btn btn-ghost text-xl" title="Delete Job">X</button>
+                    <button
+                      onClick={() => handleDeleteApplication(job._id)}
+                      className="btn btn-ghost text-xl"
+                      title="Delete Job"
+                    >
+                      X
+                    </button>
                   </th>
                 </tr>
               ))}
             </tbody>
           </table>
-        </div> : <div className="h-screen flex flex-col gap-4 justify-center items-center">
-              <p className="text-red-600 font-bold text-3xl">You didn&lsquo;t applied for any job yet</p>
-              <Link to='/' className="btn btn-primary">Apply for Jobs</Link>
-          </div>}
+        </div>
+      ) : (
+        <div className="h-screen flex flex-col gap-4 justify-center items-center">
+          <p className="text-red-600 font-bold text-3xl">
+            You didn&lsquo;t applied for any job yet
+          </p>
+          <Link to="/" className="btn btn-primary">
+            Apply for Jobs
+          </Link>
+        </div>
+      )}
     </section>
   );
 };
