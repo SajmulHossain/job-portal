@@ -35,7 +35,7 @@ const Signin = () => {
     .then(() => {
       form.reset();
       const user = { email };
-      axios.post('http://localhost:3000/jwt', user, { withCredentials: true })
+      axios.post('https://job-portal-server-ochre.vercel.app/jwt', user, { withCredentials: true })
       .then(({data}) => {
         console.log(data);
       })

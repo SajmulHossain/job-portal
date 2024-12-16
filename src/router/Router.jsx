@@ -29,7 +29,7 @@ const routes = createBrowserRouter([
           </PrivetRoute>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:3000/jobs/${params.id}`),
+          fetch(`https://job-portal-server-ochre.vercel.app/jobs/${params.id}`),
       },
       {
         path: "/register",
@@ -88,7 +88,7 @@ const routes = createBrowserRouter([
         ),
         loader: ({ params }) =>
           fetch(
-            `http://localhost:3000/job-application/jobs/${params.job_id}`
+            `https://job-portal-server-ochre.vercel.app/job-application/jobs/${params.job_id}`
           ),
       },
     ],

@@ -20,7 +20,7 @@ const MyApplication = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:3000/job-applications/${id}`, {
+        fetch(`https://job-portal-server-ochre.vercel.app/job-applications/${id}`, {
           method: "DELETE",
         })
           .then((res) => res.json())
@@ -41,14 +41,14 @@ const MyApplication = () => {
   };
 
   useEffect(() => {
-    // fetch(`http://localhost:3000/job-application?email=${user.email}`)
+    // fetch(`https://job-portal-server-ochre.vercel.app/job-application?email=${user.email}`)
     // .then(res => res.json())
     // .then(data => {
     //   setJobs(data);
     // })
 
     axios
-      .get(`http://localhost:3000/job-application?email=${user.email}`, {
+      .get(`https://job-portal-server-ochre.vercel.app/job-application?email=${user.email}`, {
         withCredentials: true,
       })
       .then(({ data }) => {

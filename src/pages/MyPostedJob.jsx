@@ -10,7 +10,7 @@ const MyPostedJob = () => {
   const { user } = useAuth();
 
   useEffect(()=> {
-    axios.get(`http://localhost:3000/jobs?email=${user.email}`, {withCredentials: true})
+    axios.get(`https://job-portal-server-ochre.vercel.app/jobs?email=${user.email}`, {withCredentials: true})
     .then(({data}) => setJobs(data))
   }, [user.email])
   return (
