@@ -3,11 +3,13 @@ import useAuth from "../hooks/useAuth";
 import Heading from "../components/Heading";
 import Swal from "sweetalert2";
 import { Link } from "react-router-dom";
-import axios from "axios";
+
+import useAxios from "../hooks/useAxios";
 
 const MyApplication = () => {
   const [jobs, setJobs] = useState([]);
   const { user } = useAuth();
+  const axiosSecure = useAxios();
 
   const handleDeleteApplication = (id) => {
     Swal.fire({
@@ -47,14 +49,18 @@ const MyApplication = () => {
     //   setJobs(data);
     // })
 
-    axios
-      .get(`https://job-portal-server-ochre.vercel.app/job-application?email=${user.email}`, {
-        withCredentials: true,
-      })
-      .then(({ data }) => {
-        setJobs(data);
-      });
-  }, [user.email]);
+    // axios
+    //   .get(`https://job-portal-server-ochre.vercel.app/job-application?email=${user.email}`, {
+    //     withCredentials: true,
+    //   })
+    //   .then(({ data }) => {
+    //     setJobs(data);
+    //   });
+
+  axiosSecure.get(`/job-application?email=${user.email}`)
+  .then(({data}) => setJobs(data))
+    
+  }, [user.email, axiosSecure]);
   return (
     <section>
       <Heading
